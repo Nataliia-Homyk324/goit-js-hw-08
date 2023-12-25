@@ -75,6 +75,12 @@ function clickHandler(event) {
 
   const originalImage = target.dataset.source;
   console.log(originalImage);
+
+  const instance = basicLightbox.create(`
+    <img src="${originalImage}"  width="800" height="600">
+`)
+
+instance.show()
 }
 
 images.forEach((image) => {
@@ -99,6 +105,7 @@ images.forEach((image) => {
     event.preventDefault(); 
   });
 });
+
 
 
 
