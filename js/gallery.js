@@ -64,6 +64,18 @@ const images = [
   },
 ];
 const galleryList = document.querySelector('.gallery');
+galleryList.addEventListener('click', clickHandler);
+
+function clickHandler(event) {
+  const target = event.target;
+
+  if (target.nodeName !== 'IMG') {
+    return;
+  }
+
+  const originalImage = target.dataset.source;
+  console.log(originalImage);
+}
 
 images.forEach((image) => {
   const galleryItem = document.createElement('li');
@@ -82,8 +94,11 @@ images.forEach((image) => {
   galleryLink.appendChild(galleryImage);
   galleryItem.appendChild(galleryLink);
   galleryList.appendChild(galleryItem);
-    
+
   galleryImage.addEventListener('click', (event) => {
     event.preventDefault(); 
   });
 });
+
+
+
