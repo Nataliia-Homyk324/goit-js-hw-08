@@ -82,4 +82,8 @@ images.forEach((image) => {
   galleryLink.appendChild(galleryImage);
   galleryItem.appendChild(galleryLink);
   galleryList.appendChild(galleryItem);
+    
+  galleryImage.addEventListener('click', (event) => {
+    event.preventDefault(); 
+  });
 });
