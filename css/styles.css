@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+   
+}
+ul
+ { 
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+img {
+    display: block;
+}
+.gallery {
+padding: 24px 156px;
+list-style-type: none;
+display: flex;
+column-gap: 24px;
+row-gap: 24px;
+flex-wrap: wrap;
+
+}
+.gallery-item{
+    width: calc((100% - 48px)/3);
+    
+}
+.gallery-image{
+    max-width: 100%;
+    overflow: hidden;
+}
