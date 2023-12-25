@@ -79,9 +79,20 @@ function clickHandler(event) {
   const instance = basicLightbox.create(`
     <img src="${originalImage}"  width="800" height="600">
 `)
+  instance.show()
+ document.addEventListener('keydown', closeModalOnEscape);
 
-instance.show()
+  function closeModalOnEscape(event) {
+    if (event.key === 'Escape') {
+      instance.close();
+      document.removeEventListener('keydown', closeModalOnEscape);
+    }
+  }
+ 
+    
+
 }
+
 
 images.forEach((image) => {
   const galleryItem = document.createElement('li');
