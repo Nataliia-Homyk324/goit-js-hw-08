@@ -66,10 +66,10 @@ const images = [
 const galleryList = document.querySelector('.gallery');
 const markup = images
   .map((image) => {
-    return `<li class = "gallery-item"><a class = "gallery-link" href = "${image.original}" ><img class = "gallery-image" src = "${image.preview}" data-source="${image.original}" alt = "${image.description}"</a></li>`
+    return `<li class="gallery-item"><a class="gallery-link" href="${image.original}"><img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}"></a></li>`
   })
   .join(''); 
-// galleryList.innerHTML = markup;
+
 galleryList.insertAdjacentHTML("afterbegin", markup);
 
 
@@ -93,13 +93,8 @@ function clickHandler(event) {
     <img src="${originalImage}"  width="800" height="600">
   `,
     {
-      onShow: (instance) => { document.addEventListener('keydown', closeModalOnEscape) }
-    },
-    
-    {
-      onClose: (instance) => {
-        document.removeEventListener('keydown', closeModalOnEscape)
-     }
+      onShow: (instance) => { document.addEventListener('keydown', closeModalOnEscape) },
+      onClose: (instance) => {document.removeEventListener('keydown', closeModalOnEscape)}
     }
   )
   
