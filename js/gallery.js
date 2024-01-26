@@ -91,11 +91,18 @@ function clickHandler(event) {
 
   const instance = basicLightbox.create(`
     <img src="${originalImage}"  width="800" height="600">
-  `)
- 
-  // onShow((instance) => { document.addEventListener('keydown', closeModalOnEscape) });
-  // onClose((instance) => { document.removeEventListener('keydown', closeModalOnEscape) });
-  document.addEventListener('keydown', closeModalOnEscape);
+  `,
+    {
+      onShow: (instance) => { document.addEventListener('keydown', closeModalOnEscape) }
+    },
+    
+    {
+      onClose: (instance) => {
+        document.removeEventListener('keydown', closeModalOnEscape)
+     }
+    }
+  )
+  
   function closeModalOnEscape(event) {
   if (event.key === 'Escape') {
     instance.close();
