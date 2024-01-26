@@ -66,7 +66,7 @@ const images = [
 const galleryList = document.querySelector('.gallery');
 const markup = images
   .map((image) => {
-    return `<li class="gallery-item"><a class="gallery-link" href="${image.original}"><img class="gallery-image" src="${image.preview}" data-source="${image.original}" alt="${image.description}"></a></li>`
+    return `<li class="gallery-item"><a class="gallery-link" href=${image.original}><img class="gallery-image" src=${image.preview} data-source=${image.original} alt=${image.description}></a></li>`
   })
   .join(''); 
 
