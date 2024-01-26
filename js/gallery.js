@@ -64,58 +64,46 @@ const images = [
   },
 ];
 const galleryList = document.querySelector('.gallery');
+const markup = images
+  .map((image) => {
+    return `<li class = "gallery-item"><a class = "gallery-link" href = "${image.original}" ><img class = "gallery-image" src = "${image.preview}" data-source="${image.original}" alt = "${image.description}"</a></li>`
+  })
+  .join(''); 
+// galleryList.innerHTML = markup;
+galleryList.insertAdjacentHTML("afterbegin", markup);
+
+
+
 galleryList.addEventListener('click', clickHandler);
 
-function clickHandler(event) {
-  const target = event.target;
 
+
+
+function clickHandler(event) {
+  event.preventDefault();
+  const target = event.target;
   if (target.nodeName !== 'IMG') {
     return;
   }
 
   const originalImage = target.dataset.source;
-  console.log(originalImage);
+   console.log(originalImage);
 
   const instance = basicLightbox.create(`
     <img src="${originalImage}"  width="800" height="600">
-`)
-  instance.show()
- document.addEventListener('keydown', closeModalOnEscape);
-
-  function closeModalOnEscape(event) {
-    if (event.key === 'Escape') {
-      instance.close();
-      document.removeEventListener('keydown', closeModalOnEscape);
-    }
-  }
+  `)
  
-    
-
+  // onShow((instance) => { document.addEventListener('keydown', closeModalOnEscape) });
+  // onClose((instance) => { document.removeEventListener('keydown', closeModalOnEscape) });
+  document.addEventListener('keydown', closeModalOnEscape);
+  function closeModalOnEscape(event) {
+  if (event.key === 'Escape') {
+    instance.close();
+  }
+  }
+  instance.show()
 }
 
-
-images.forEach((image) => {
-  const galleryItem = document.createElement('li');
-  galleryItem.classList.add('gallery-item');
-
-  const galleryLink = document.createElement('a');
-  galleryLink.classList.add('gallery-link');
-  galleryLink.href = image.original;
-
-  const galleryImage = document.createElement('img');
-  galleryImage.classList.add('gallery-image');
-  galleryImage.src = image.preview;
-  galleryImage.setAttribute('data-source', image.original);
-  galleryImage.alt = image.description;
-
-  galleryLink.appendChild(galleryImage);
-  galleryItem.appendChild(galleryLink);
-  galleryList.appendChild(galleryItem);
-
-  galleryImage.addEventListener('click', (event) => {
-    event.preventDefault(); 
-  });
-});
 
 
 
